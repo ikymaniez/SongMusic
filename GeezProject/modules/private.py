@@ -11,23 +11,25 @@ def _start(client, message):
         text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
         parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
-            [
+            [ 
                 [
                     InlineKeyboardButton(
-                        "➕ Add me to your Group 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-                [
+                        "🤵Owner Music", url="https://t.me/afterdaytoxic")
+                  ],[
                     InlineKeyboardButton(
-                        "📲 Updates", url=f"https://t.me/{UPDATES_CHANNEL}"), 
+                        "👥Official Group", url="https://t.me/captionanakmuda"
+                    ),
                     InlineKeyboardButton(
-                        "💬 Support", url=f"https://t.me/{SUPPORT_GROUP}")
-                ],[
+                        "📢Official Channel", url="https://t.me/humangabutguys") 
+                  ],[
                     InlineKeyboardButton(
-                        "🛠 Source Code 🛠", url=f"https://{SOURCE_CODE}")
+                        "🍀Instagram", url="https://www.instagram.com/ikyyy_35"
+                    )
                 ]
             ]
         ),
-        reply_to_message_id=message.message_id
-        )
+     reply_to_message_id=message.message_id
+    )
 
 @Client.on_message(filters.command("start") & ~filters.private & ~filters.channel)
 async def gstart(_, message: Message):
@@ -37,7 +39,7 @@ async def gstart(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 Support Chat", url=f"https://t.me/{SUPPORT_GROUP}"
+                        "👥 Support Group", url="https://t.me/Familythunder"
                     )
                 ]
             ]
@@ -77,9 +79,9 @@ def map(pos):
     elif(pos==len(tr.HELP_MSG)-1):
         url = f"https://t.me/{SUPPORT_GROUP}"
         button = [
-            [InlineKeyboardButton("➕ Add me to your Group", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-            [InlineKeyboardButton(text = '📲 Updates', url=f"https://t.me/{UPDATES_CHANNEL}"),
-             InlineKeyboardButton(text = '💬 Support', url=f"https://t.me/{SUPPORT_GROUP}")],
+            [InlineKeyboardButton("🤵 Owner Music", url="https://t.me/boyfriendnice")
+            [InlineKeyboardButton(text = '👥 Support Group', url="https://t.me/Familythunder"
+             InlineKeyboardButton(text = '🍀 Instagram', url="https://www.instagram.com/ikyyy_35"
             [InlineKeyboardButton(text = '🛠 Source Code 🛠', url=f"https://{SOURCE_CODE}")],
             [InlineKeyboardButton(text = '◀️Undo', callback_data = f"help+{pos-1}")]
         ]
@@ -95,7 +97,20 @@ def map(pos):
 @Client.on_message(filters.command("help") & ~filters.private & ~filters.channel)
 async def ghelp(_, message: Message):
     await message.reply_text(
-        f"""**🙋‍♀️ Hello there! I can play music in the voice chats of telegram groups.**""",
+        f"""<b>Haii.. 👋🏻 {message.from_user.first_name} Welcome To 𓊈Virtual Music𓊉\n
+Aku Adalah Bot Music Telegram Yang Akan Menemani mu Di Voice Call Group.
+Jika Ingin Menggunakan Invite Aku Dan Asisstantnya Ke Dalam Group Lalu Angkat Bot Menjadi Admin. Jika Ada Kendala Bisa Chat Pemilik Nya.
+┏━━━━━━━━━━━━━━
+┣ > 𝙼𝚎𝚖𝚞𝚝𝚊𝚛 𝚖𝚞𝚜𝚒𝚔 𝚍𝚒𝚐𝚛𝚞𝚙 𝚔𝚊𝚖𝚞.
+┣ > 𝙱𝚒𝚜𝚊 𝚕𝚒𝚜𝚝 𝚕𝚊𝚐𝚞, 𝚌𝚞𝚖𝚊𝚗 𝚓𝚊𝚗𝚐𝚊𝚗 𝚜𝚎𝚔𝚊𝚕𝚒𝚐𝚞𝚜 𝚝𝚊𝚔𝚞𝚝 𝚎𝚛𝚛𝚘𝚛.
+┣ > 𝙼𝚎𝚗𝚌𝚊𝚛𝚒 𝚍𝚊𝚗 𝚖𝚎𝚖𝚞𝚕𝚊𝚒 𝚕𝚊𝚐𝚞 𝚋𝚎𝚛𝚜𝚊𝚖𝚊 𝚝𝚎𝚖𝚊𝚗-𝚝𝚎𝚖𝚊𝚗𝚖𝚞.
+┣ > 𝙼𝚎𝚗𝚌𝚊𝚛𝚒 𝚕𝚊𝚐𝚞 𝚔𝚊𝚖𝚞 𝚍𝚊𝚗 𝚍𝚘𝚠𝚗𝚕𝚘𝚊𝚍 𝚕𝚊𝚐𝚞 𝚔𝚊𝚖𝚞 𝚖𝚎𝚕𝚊𝚕𝚞𝚒 𝚊𝚔𝚞.
+┗━━━━━━━━━━━━━━
+🤵𝓒𝓻𝓮𝓪𝓽𝓮𝓭 𝓫𝔂 : [King](https://t.me/boyfriendnice)
+☘️𝓣𝓱𝓪𝓷𝓴𝓼 𝓯𝓸𝓻 : [Grup Support](https://t.me/Familythunder)
+━━━━━━━━━━━━━━
+𝐁𝐎𝐓 𝐌𝐔𝐒𝐈𝐊 : @Virtualsong_bot - 𝐀𝐒𝐈𝐒𝐒𝐓𝐀𝐍𝐓 𝐌𝐔𝐒𝐈𝐊 : @AsisstantMusicVirtual
+         
         reply_markup=InlineKeyboardMarkup(
             [
                 [
