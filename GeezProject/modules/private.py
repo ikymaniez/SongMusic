@@ -5,12 +5,10 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from GeezProject.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL,BOT_USERNAME
 logging.basicConfig(level=logging.INFO)
 
-@Client.on_message(filters.private & filters.incoming & filters.command(['start']))
-def _start(client, message):
-    client.send_message(message.chat.id,
-        text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
-        parse_mode="markdown",
- f"""<b>Haii.. 👋🏻 {message.from_user.first_name} Welcome To 𓊈Virtual Music𓊉\n
+@Client.on_message(filters.command("help") & ~filters.private & ~filters.channel)
+async def ghelp(_, message: Message):
+    await message.reply_text(
+       f"""<b>Haii.. 👋🏻 {message.from_user.first_name} Welcome To 𓊈Virtual Music𓊉\n
 Aku Adalah Bot Music Telegram Yang Akan Menemani mu Di Voice Call Group.
 Jika Ingin Menggunakan Invite Aku Dan Asisstantnya Ke Dalam Group Lalu Angkat Bot Menjadi Admin. Jika Ada Kendala Bisa Chat Pemilik Nya.
 ┏━━━━━━━━━━━━━━
