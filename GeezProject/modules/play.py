@@ -459,7 +459,7 @@ async def play(_, message: Message):
                     InlineKeyboardButton("📖 Playlist", callback_data="playlist"),
                     InlineKeyboardButton("Menu ⏯ ", callback_data="menu"),
                 ],
-                [InlineKeyboardButton(text="Support Channel", url="https://t.me/Vckyouuu")],
+                [InlineKeyboardButton(text="GROUP", url="https://t.me/Familythunder")],
                 [InlineKeyboardButton(text="Close", callback_data="cls")],
             ]
         )
@@ -509,7 +509,7 @@ async def play(_, message: Message):
                     InlineKeyboardButton("📖 Playlist", callback_data="playlist"),
                     InlineKeyboardButton("Menu ⏯ ", callback_data="menu"),
                 ],
-                [InlineKeyboardButton(text="Support Channel", url="https://t.me/Vckyouuu")],
+                [InlineKeyboardButton(text="GROUP", url="https://t.me/Familythunder")],
                 [InlineKeyboardButton(text="Close", callback_data="cls")],
             ]
         )
@@ -635,7 +635,7 @@ async def deezer(client: Client, message_: Message):
                 InlineKeyboardButton("📖 Playlist", callback_data="playlist"),
                 InlineKeyboardButton("Menu ⏯ ", callback_data="menu"),
             ],
-            [InlineKeyboardButton(text="Support Channel", url=f"Https://t.me/Vckyouuu")],
+            [InlineKeyboardButton(text="GROUP", url=f"Https://t.me/Familythunder")],
             [InlineKeyboardButton(text="❌ Close", callback_data="cls")],
         ]
     )
