@@ -1,78 +1,108 @@
+import logging
+from GeezProject.modules.msg import Messages as tr
 from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
+from GeezProject.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL,BOT_USERNAME
+logging.basicConfig(level=logging.INFO)
 
-from config import BOT_NAME as bn
-
-@Client.on_message(filters.command("start") & filters.private & ~filters.channel)
-async def start(_, message: Message):
-    await message.reply_text(
-        f"""<b>Haii.. 👋🏻 {message.from_user.first_name} Welcome To 𓊈Virtual Music𓊉\n
-𝘈𝘒𝘜 𝘈𝘋𝘈𝘓𝘈𝘏 𝘉𝘖𝘛 𝘔𝘜𝘚𝘐𝘒 𝘛𝘌𝘓𝘌𝘎𝘙𝘈𝘔 𝘠𝘈𝘕𝘎 𝘋𝘐 𝘒𝘌𝘔𝘉𝘈𝘕𝘎𝘒𝘈𝘕 𝘖𝘓𝘌𝘏 : [King](https://t.me/boyfriendnice)
-
-𝘈𝘗𝘈𝘉𝘐𝘓𝘈 𝘐𝘕𝘎𝘐𝘕 𝘔𝘌𝘕𝘎𝘎𝘜𝘕𝘈𝘒𝘈𝘕 𝘈𝘒𝘜 𝘐𝘕𝘝𝘐𝘛𝘌 𝘈𝘒𝘜 𝘋𝘈𝘕 𝘈𝘚𝘐𝘚𝘚𝘛𝘈𝘕𝘛 𝘕𝘠𝘈 𝘓𝘈𝘓𝘜 𝘑𝘈𝘋𝘐𝘒𝘈𝘕 𝘈𝘋𝘔𝘐𝘕 𝘒𝘌𝘋𝘜𝘈𝘕𝘠𝘈 𝘈𝘎𝘈𝘙 𝘉𝘐𝘚𝘈 𝘉𝘌𝘙𝘑𝘈𝘓𝘈𝘕 𝘋𝘌𝘕𝘎𝘈𝘕 𝘓𝘈𝘕𝘊𝘈𝘙, 𝘑𝘐𝘒𝘈 𝘈𝘋𝘈 𝘒𝘌𝘕𝘋𝘈𝘓𝘈 𝘉𝘐𝘚𝘈 𝘊𝘏𝘈𝘛 𝘖𝘞𝘕𝘌𝘙𝘕𝘠𝘈.
-┏━━━━━━━━━━━━━━
-┣ > 𝙼𝚎𝚖𝚞𝚝𝚊𝚛 𝚖𝚞𝚜𝚒𝚔 𝚍𝚒𝚐𝚛𝚞𝚙 𝚔𝚊𝚖𝚞.
-┣ > 𝙱𝚒𝚜𝚊 𝚕𝚒𝚜𝚝 𝚕𝚊𝚐𝚞, 𝚌𝚞𝚖𝚊𝚗 𝚓𝚊𝚗𝚐𝚊𝚗 𝚜𝚎𝚔𝚊𝚕𝚒𝚐𝚞𝚜 𝚝𝚊𝚔𝚞𝚝 𝚎𝚛𝚛𝚘𝚛.
-┣ > 𝙼𝚎𝚗𝚌𝚊𝚛𝚒 𝚍𝚊𝚗 𝚖𝚎𝚖𝚞𝚕𝚊𝚒 𝚕𝚊𝚐𝚞 𝚋𝚎𝚛𝚜𝚊𝚖𝚊 𝚝𝚎𝚖𝚊𝚗-𝚝𝚎𝚖𝚊𝚗𝚖𝚞.
-┣ > 𝙼𝚎𝚗𝚌𝚊𝚛𝚒 𝚕𝚊𝚐𝚞 𝚔𝚊𝚖𝚞 𝚍𝚊𝚗 𝚍𝚘𝚠𝚗𝚕𝚘𝚊𝚍 𝚕𝚊𝚐𝚞 𝚔𝚊𝚖𝚞 𝚖𝚎𝚕𝚊𝚕𝚞𝚒 𝚊𝚔𝚞.
-┗━━━━━━━━━━━━━━
-🤵𝓒𝓻𝓮𝓪𝓽𝓮𝓭 𝓫𝔂 : [King](https://t.me/boyfriendnice)
-☘️𝓣𝓱𝓪𝓷𝓴𝓼 𝓯𝓸𝓻 : [Grup Support](https://t.me/remaja_virtual62)
-━━━━━━━━━━━━━━
-𝐁𝐎𝐓 𝐌𝐔𝐒𝐈𝐊 : @Virtualsongbot - 𝐀𝐒𝐈𝐒𝐒𝐓𝐀𝐍𝐓 𝐌𝐔𝐒𝐈𝐊 : @AsisstantMusicVirtual
- 
-</b>""",
+@Client.on_message(filters.private & filters.incoming & filters.command(['start']))
+def _start(client, message):
+    client.send_message(message.chat.id,
+        text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
+        parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
-            [ 
+            [
                 [
                     InlineKeyboardButton(
-                        "🤵Owner Music", url="https://t.me/afterdaytoxic")
-                  ],[
+                        "➕ Add me to your Group 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
+                [
                     InlineKeyboardButton(
-                        "👥Official Group", url="https://t.me/captionanakmuda"
-                    ),
+                        "📢 Support Channel", url=f"https://t.me/MusikManagement"), 
                     InlineKeyboardButton(
-                        "📢Official Channel", url="https://t.me/humangabutguys") 
-                  ],[
+                        "👥 Support Group", url=f"https://t.me/Familythunder")
+                ],[
                     InlineKeyboardButton(
-                        "🍀Instagram", url="https://www.instagram.com/ikyyy_35"
+                        "🦇 Owner Music", url=f"https://boyfriendnice")
+                ]
+            ]
+        ),
+        reply_to_message_id=message.message_id
+        )
+
+@Client.on_message(filters.command("start") & ~filters.private & ~filters.channel)
+async def gstart(_, message: Message):
+    await message.reply_text(
+        f"""**🔴 {PROJECT_NAME} is online**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "👥 Support Group", url=f"https://t.me/Familythunder"
                     )
                 ]
             ]
         ),
-     disable_web_page_preview=True
     )
 
-@Client.on_message(filters.command("start") & ~filters.private & ~filters.channel)
-async def gstart(_, message: Message):
-      await message.reply_text("""**Aku sudah online, ayo kita joget ceria! 🎶**""",
-      reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🤵Owner Music", url="https://t.me/afterdaytoxic"
-                    )
-                ],[
-                    InlineKeyboardButton(
-                        "✅ Yes!", switch_inline_query_current_chat=""
-                    ),
-                    InlineKeyboardButton(
-                        "❌ No!", callback_data="close"
-                    )
-                ]
-            ]
-        )
+
+@Client.on_message(filters.private & filters.incoming & filters.command(['help']))
+def _help(client, message):
+    client.send_message(chat_id = message.chat.id,
+        text = tr.HELP_MSG[1],
+        parse_mode="markdown",
+        disable_web_page_preview=True,
+        disable_notification=True,
+        reply_markup = InlineKeyboardMarkup(map(1)),
+        reply_to_message_id = message.message_id
     )
+
+help_callback_filter = filters.create(lambda _, __, query: query.data.startswith('help+'))
+
+@Client.on_callback_query(help_callback_filter)
+def help_answer(client, callback_query):
+    chat_id = callback_query.from_user.id
+    disable_web_page_preview=True
+    message_id = callback_query.message.message_id
+    msg = int(callback_query.data.split('+')[1])
+    client.edit_message_text(chat_id=chat_id,    message_id=message_id,
+        text=tr.HELP_MSG[msg],    reply_markup=InlineKeyboardMarkup(map(msg))
+    )
+
+
+def map(pos):
+    if(pos==1):
+        button = [
+            [InlineKeyboardButton(text = '▶️Next', callback_data = "help+2")]
+        ]
+    elif(pos==len(tr.HELP_MSG)-1):
+        url = f"https://t.me/{SUPPORT_GROUP}"
+        button = [
+            [InlineKeyboardButton("➕ Add me to your Group", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
+            [InlineKeyboardButton(text = '👥 Group', url=f"https://t.me/Familythunder"),
+             InlineKeyboardButton(text = '📢 Channel', url=f"https://t.me/MusikManagement")],
+            [InlineKeyboardButton(text = '🦇 Owner Music', url=f"https://boyfriendnice")],
+            [InlineKeyboardButton(text = '◀️Undo', callback_data = f"help+{pos-1}")]
+        ]
+    else:
+        button = [
+            [
+                InlineKeyboardButton(text = '◀️Undo', callback_data = f"help+{pos-1}"),
+                InlineKeyboardButton(text = '▶️Next', callback_data = f"help+{pos+1}")
+            ],
+        ]
+    return button
 
 @Client.on_message(filters.command("help") & ~filters.private & ~filters.channel)
-async def gstart(_, message: Message):
+async def ghelp(_, message: Message):
     await message.reply_text(
-        """**Klik tombol dibawah untuk melihat panduan menggunakan bot**""",
+        f"""**🙋‍♀️ Hello there! I can play music in the voice chats of telegram groups.**""",
+          Aku Adalah Bot Music Telegram Yang Akan Menemani mu Di Voice Call Group.
+Jika Ingin Menggunakan Invite Aku Dan Asisstantnya Ke Dalam Group Lalu Angkat Bot Menjadi Admin. Jika Ada Kendala Bisa Chat Pemilik Nya.
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "🦇 Cara Memakai Bot Music!", url="https://t.me/humangabutguys/91577"
+                        "⚙️ Click here for help", url=f"https://t.me/{BOT_USERNAME}?start"
                     )
                 ]
             ]
